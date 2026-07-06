@@ -1,0 +1,290 @@
+/* ----- Сброс и базовые стили ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9edf5 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.todo-container {
+    max-width: 700px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border-radius: 2.5rem;
+    padding: 2rem 2rem 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 20, 40, 0.15), 0 6px 12px rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 2.2rem;
+    letter-spacing: -0.5px;
+    color: #1e2b3c;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.8rem;
+    border-bottom: 2px solid rgba(30, 43, 60, 0.08);
+    padding-bottom: 0.7rem;
+}
+
+h1 span {
+    background: #2a3f5a;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.1rem 0.8rem;
+    border-radius: 40px;
+    margin-left: auto;
+    letter-spacing: 0.3px;
+}
+
+/* ----- Форма добавления ----- */
+.add-task {
+    display: flex;
+    gap: 0.7rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.add-task input {
+    flex: 1;
+    min-width: 180px;
+    padding: 0.9rem 1.2rem;
+    border: none;
+    border-radius: 60px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02), inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    transition: 0.2s;
+    outline: 1px solid #dce3ec;
+}
+
+.add-task input:focus {
+    outline: 2px solid #6c8eb0;
+    box-shadow: 0 6px 14px rgba(70, 120, 200, 0.15);
+}
+
+.add-task button {
+    background: #1e2b3c;
+    color: white;
+    border: none;
+    padding: 0 2rem;
+    border-radius: 60px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 6px 12px rgba(20, 40, 70, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+.add-task button:hover {
+    background: #2a3f5a;
+    transform: scale(1.02);
+    box-shadow: 0 10px 18px rgba(20, 40, 70, 0.2);
+}
+
+.add-task button:active {
+    transform: scale(0.96);
+}
+
+/* ----- Фильтры ----- */
+.filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.8rem;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 0.4rem;
+    border-radius: 60px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 1.3rem;
+    border-radius: 40px;
+    font-weight: 500;
+    color: #2f4057;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 0.95rem;
+    flex: 1 0 auto;
+}
+
+.filter-btn.active {
+    background: #1e2b3c;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filter-btn:hover:not(.active) {
+    background: rgba(30, 43, 60, 0.06);
+}
+
+/* ----- Список задач ----- */
+.task-list {
+    list-style: none;
+    margin-top: 0.5rem;
+}
+
+.task-item {
+    background: white;
+    padding: 0.9rem 1.2rem 0.9rem 1.6rem;
+    margin-bottom: 0.6rem;
+    border-radius: 80px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    transition: 0.2s;
+    border: 1px solid rgba(200, 212, 230, 0.3);
+    animation: fadeIn 0.25s ease;
+}
+
+.task-item:hover {
+    border-color: #bacfe4;
+    box-shadow: 0 4px 12px rgba(0, 20, 40, 0.04);
+}
+
+.task-item .task-text {
+    flex: 1;
+    font-size: 1.05rem;
+    color: #1e2b3c;
+    word-break: break-word;
+    transition: 0.2s;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #8b9bb0;
+}
+
+.task-item .task-check {
+    width: 22px;
+    height: 22px;
+    accent-color: #2a5f7a;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.task-item .delete-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: #a3b6cc;
+    cursor: pointer;
+    padding: 0 0.2rem;
+    transition: 0.15s;
+    flex-shrink: 0;
+}
+
+.task-item .delete-btn:hover {
+    color: #c74a4a;
+    transform: scale(1.2);
+}
+
+.empty-message {
+    text-align: center;
+    color: #7b8ea3;
+    padding: 2rem 0 1rem;
+    font-style: italic;
+    letter-spacing: 0.2px;
+}
+
+/* ----- Счётчик и доп. информация ----- */
+.task-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.8rem;
+    font-size: 0.9rem;
+    color: #4c637c;
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+    padding-top: 1.2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.clear-all-btn {
+    background: none;
+    border: none;
+    color: #9aafc5;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline dotted;
+    transition: 0.15s;
+    padding: 0.2rem 0.6rem;
+}
+
+.clear-all-btn:hover {
+    color: #c74a4a;
+    text-decoration: underline;
+}
+
+/* ----- Анимация ----- */
+@keyframes fadeIn {
+    from {
+        opacity: 0.4;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ----- Адаптивность ----- */
+@media (max-width: 550px) {
+    .todo-container {
+        padding: 1.5rem 1rem 1.8rem;
+        border-radius: 2rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .add-task input {
+        min-width: 140px;
+        padding: 0.8rem 1rem;
+    }
+
+    .add-task button {
+        padding: 0 1.2rem;
+    }
+
+    .task-item {
+        padding: 0.7rem 0.8rem 0.7rem 1.2rem;
+        border-radius: 40px;
+    }
+
+    .filters .filter-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .add-task button {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem;
+    }
+}
