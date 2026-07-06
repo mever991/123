@@ -48,9 +48,9 @@
         if (filtered.length === 0) {
             const empty = document.createElement('li');
             empty.className = 'empty-message';
-            empty.textContent = currentFilter === 'all' ? '✨ Нет задач. Добавьте первую!' :
-                currentFilter === 'active' ? '✅ Все задачи выполнены!' :
-                    '📭 Нет завершённых задач.';
+            empty.textContent = currentFilter === 'all' ? ' Нет задач. Добавьте первую!' :
+                currentFilter === 'active' ? ' Все задачи выполнены!' :
+                    ' Нет завершённых задач.';
             taskList.appendChild(empty);
         } else {
             const sorted = [...filtered].sort((a, b) => {
