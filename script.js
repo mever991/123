@@ -10,7 +10,7 @@
     const clearCompletedBtn = document.getElementById('clearCompletedBtn');
 
     let tasks = [];
-    let currentFilter = 'all'; // 'all', 'active', 'completed'
+    let currentFilter = 'all';
 
     function loadTasks() {
         const stored = localStorage.getItem('todoTasks');
